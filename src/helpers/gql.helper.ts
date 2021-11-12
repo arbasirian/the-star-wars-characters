@@ -1,7 +1,7 @@
 import { gql } from 'apollo-boost';
 
 const ALL_PEOPLE = gql`
-  query ($q: String!) {
+  query ($cursor: String) {
     allPeople(first: 10, after: $cursor) {
       totalCount
       pageInfo {

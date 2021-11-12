@@ -1,11 +1,16 @@
 import React, { PureComponent } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
-import { Box } from 'components';
+import { Box, PeopleList } from 'components';
 
 export class HomePage extends PureComponent<RouteComponentProps> {
   render() {
-    return <Box>Home Page</Box>;
+    return (
+      <Box>
+        Home Page
+        <PeopleList />
+      </Box>
+    );
   }
 }
 

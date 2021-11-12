@@ -18,6 +18,8 @@
     "apollo-link-context": "^1.0.20",
     "axios": "^0.21.4",
     "caniuse-lite": "^1.0.30001270",
+    "cross-env": "^7.0.3",
+    "env-cmd": "^10.1.0",
     "formik": "^2.2.9",
     "graphql": "^16.0.1",
     "jwt-decode": "^3.1.2",
@@ -45,7 +47,7 @@
     "yup": "^0.32.9"
   },
   "scripts": {
-    "dev": "react-scripts start",
+    "dev": "cross-env env-cmd -f ./.env react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

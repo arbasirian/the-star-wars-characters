@@ -17,27 +17,31 @@ import GlobalStyle from 'assets/styles/global.styles';
 
 // Apollo Config
 const httpLink = createHttpLink({
-  uri: 'https://github.com/graphql/swapi-graphql',
+  uri: 'https://swapi-graphql.netlify.app/.netlify/functions/index',
 });
 
 const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
+      'Access-Control-Allow-Origin': '*', // Required for CORS support to work
       // authorization: access ? `Bearer ${access}` : '', // You can add auth token here
     },
   };
 });
-const client = new ApolloClient({
+const client: any = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
 ReactDOM.render(
-  <ThemeProvider theme={themeVariables()}>
-    <GlobalStyle />
-    <App />
-  </ThemeProvider>,
+  <ApolloProvider client={client}>
+    <ThemeProvider theme={themeVariables()}>
+      <GlobalStyle />
+      <App />
+    </ThemeProvider>
+  </ApolloProvider>,
+
   document.getElementById('root')
 );
 
