@@ -12,23 +12,22 @@ const PeopleList = () => {
   const { data, loading, fetchMore } = useQuery(GqlHelper.ALL_PEOPLE);
 
   const peopleData: AllPeopleData = data?.allPeople;
-  console.log(`people`, data, loading);
   const handleLoadMore = () =>
     fetchMore({
       variables: {
         cursor: peopleData.pageInfo.endCursor,
       },
       updateQuery: (previousResult, { fetchMoreResult }) => {
-        const newEdges = fetchMoreResult.comments.edges;
-        const pageInfo = fetchMoreResult.comments.pageInfo;
+        const newEdges = fetchMoreResult.allPeople.edges;
+        const pageInfo = fetchMoreResult.allPeople.pageInfo;
 
         return newEdges.length
           ? {
-              // Put the new comments at the end of the list and update `pageInfo`
+              // Put the new allPeople at the end of the list and update `pageInfo`
               // so we have the new `endCursor` and `hasNextPage` values
-              comments: {
-                __typename: previousResult.comments.__typename,
-                edges: [...previousResult.comments.edges, ...newEdges],
+              allPeople: {
+                __typename: previousResult.allPeople.__typename,
+                edges: [...previousResult.allPeople.edges, ...newEdges],
                 pageInfo,
               },
             }
@@ -41,7 +40,7 @@ const PeopleList = () => {
     <Box>
       <Flex justifyContent="flex-end" padding="20px 0">
         <Search
-          placeholder="input search text"
+          placeholder="Search Character by name"
           onSearch={hanleSearch}
           style={{ width: 200 }}
         />
