@@ -3,7 +3,7 @@ import { HomePage, NotFoundPage } from 'pages';
 
 const ROUTES: RouteModel[] = [
   {
-    path: '/home',
+    path: '/',
     slug: 'home',
     exact: true,
     authorized: true,

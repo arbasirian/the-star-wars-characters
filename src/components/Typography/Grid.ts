@@ -9,7 +9,7 @@ export const Grid = styled.div<GridProps>`
   color: ${(props) =>
     !!props.color && !!props.theme.colors[props.color]
       ? props.theme.colors[props.color]
-      : props.theme.colors.white};
+      : props.theme.colors.primary};
 
   /* FONT_FAMILY */
 

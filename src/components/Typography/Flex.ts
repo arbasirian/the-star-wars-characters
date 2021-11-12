@@ -10,7 +10,7 @@ export const Flex = styled.div<FlexProps>`
   color: ${(props) =>
     !!props.color && !!props.theme.colors[props.color]
       ? props.theme.colors[props.color]
-      : props.theme.colors.white};
+      : props.theme.colors.primary};
 
   /* FONT_FAMILY */
   font-family: ${(props) => {

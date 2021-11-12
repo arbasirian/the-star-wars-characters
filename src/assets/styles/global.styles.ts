@@ -9,6 +9,9 @@ export const BodyStyles = css`
   }
   .has-cursor {
     cursor: pointer;
+    &:hover {
+      color: ${({ theme }) => theme.colors.accent};
+    }
   }
   .name-icon {
     background-color: #ff9458;
@@ -54,13 +57,22 @@ export const BodyStyles = css`
   }
 `;
 export const AntLayouts = css`
+  .main-spinner {
+    min-height: 100vh;
+    color: #000;
+  }
+  .qty-design {
+    border-radius: 8px;
+    overflow: hidden;
+  }
   .ant-layout {
     min-height: 100vh;
+    background-color: white;
   }
   .ant-layout-header {
     background: ${({ theme }) => theme.colors.primary};
     height: auto;
-    padding: 12px;
+    padding: 0;
     line-height: 56px;
   }
   .ant-layout-sider {
@@ -306,44 +318,7 @@ export const Body = css`
     }
   }
 `;
-export const RGB = css`
-  .react-grid-layout {
-    position: relative;
-    width: calc(100% - 224px);
-  }
-`;
-export const ReportsFilter = css`
-  .reports-filter {
-    border: none;
-    box-shadow: none;
-    .ant-picker-suffix {
-      order: -1;
-      margin-left: 0;
-      margin-right: 10px;
-    }
-    .ant-picker-focused {
-      box-shadow: 0;
-    }
-    .ant-picker-panel-container {
-      border-radius: 15px;
-    }
-  }
-`;
-export const RangePicker = css`
-  .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner,
-  .ant-picker-cell-in-view.ant-picker-cell-range-start .ant-picker-cell-inner,
-  .ant-picker-cell-in-view.ant-picker-cell-range-end .ant-picker-cell-inner {
-    background-color: ${({ theme }) => theme.colors.blue1};
-    border-radius: 4px !important;
-  }
-  .ant-picker-cell-in-view.ant-picker-cell-today
-    .ant-picker-cell-inner::before {
-    border: none;
-  }
-  .ant-picker-panel-container {
-    border-radius: 15px;
-  }
-`;
+
 export const DesignedScroll = css`
   .designed-scroll {
     &::-webkit-scrollbar {
@@ -392,38 +367,13 @@ export const DesignedScroll = css`
     }
   }
 `;
-export const MenuSiderCollapsed = css`
-  .ant-layout-sider-collapsed {
-    .ant-menu-item,
-    .ant-menu-submenu-title {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 0px !important;
-      .anticon {
-        display: block !important;
-        margin: 0 auto !important;
-        line-height: 22px !important;
-      }
-      .ant-menu-submenu-arrow {
-        display: none !important;
-      }
-      span {
-        display: none !important;
-      }
-    }
-  }
-`;
+
 export default createGlobalStyle`
   ${BodyStyles};
   ${AntLayouts};
   ${AntModal};
   ${FlexProp};
   ${Body};
-  ${RGB};
-  ${ReportsFilter};
-  ${RangePicker};
   ${DesignedScroll};
-  ${MenuSiderCollapsed};
+
 `;

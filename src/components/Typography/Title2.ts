@@ -23,7 +23,7 @@ export const Title2 = styled.h2<TitleProps>`
   color: ${(props) =>
     !!props.color && !!props.theme.colors[props.color]
       ? props.theme.colors[props.color]
-      : props.theme.colors.white};
+      : props.theme.colors.primary};
 
   /* FONT_FAMILY */
   font-family: ${(props) => {

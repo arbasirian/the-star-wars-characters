@@ -1,14 +1,6 @@
-import React, { Suspense, FC } from 'react';
-import {
-  Route,
-  BrowserRouter as Router,
-  Switch,
-  Redirect,
-} from 'react-router-dom';
+import React, { FC } from 'react';
 
-import ROUTES from 'routes';
 import { RouteModel } from 'types';
-import { MainLayout } from 'layouts';
 import { Authorized, Unauthorized } from 'components';
 
 const RouteWithSubRoutes: FC<RouteModel> = (route: RouteModel) => (

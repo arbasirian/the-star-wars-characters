@@ -1,12 +1,12 @@
 /**
- * Form
+ * Auth
  */
 export * from './Auth';
 
 /**
- * Form
+ * Home
  */
-export * from './Form';
+export * from './Home';
 
 /**
  * Shared
