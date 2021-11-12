@@ -5,11 +5,9 @@ import { PeopleModel } from 'types';
 import { ColumnsType } from 'antd/lib/table';
 
 type Porops = {
-  dataSource: PeopleModel[];
-  loadMore: () => void;
-  totalCount: number;
+  dataSource?: PeopleModel[];
 };
-const PeopleTable = ({ dataSource, loadMore, totalCount }: Porops) => {
+const PeopleTable = ({ dataSource }: Porops) => {
   const columns: ColumnsType<PeopleModel> = [
     {
       title: 'Name',
@@ -46,7 +44,7 @@ const PeopleTable = ({ dataSource, loadMore, totalCount }: Porops) => {
       rowKey="id"
       dataSource={dataSource}
       columns={columns}
-      pagination={{ total: totalCount }}
+      pagination={false}
     />
   );
 };

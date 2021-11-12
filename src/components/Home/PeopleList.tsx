@@ -1,39 +1,39 @@
-import React, { ChangeEventHandler } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { Input } from 'antd';
 
 import { GqlHelper } from 'helpers';
-import { Box, Flex, PeopleTable, SpinnerView } from 'components';
+import { Box, Button, Flex, PeopleTable, SpinnerView } from 'components';
 import { AllPeopleData } from 'types';
 
 const { Search } = Input;
 
 const PeopleList = () => {
   const { data, loading, fetchMore } = useQuery(GqlHelper.ALL_PEOPLE);
+  const [pageNumber, setpageNumber] = useState(1); // Page number
+  const [peopleData, setPeopleData] = useState<AllPeopleData>(data?.allPeople);
 
-  const peopleData: AllPeopleData = data?.allPeople;
-  const handleLoadMore = () =>
+  useEffect(() => {
+    if (data) setPeopleData(data?.allPeople);
+  }, [data]);
+
+  const handleNextPage = () =>
     fetchMore({
       variables: {
-        cursor: peopleData.pageInfo.endCursor,
+        cursor: peopleData?.pageInfo?.endCursor,
       },
       updateQuery: (previousResult, { fetchMoreResult }) => {
-        const newEdges = fetchMoreResult.allPeople.edges;
-        const pageInfo = fetchMoreResult.allPeople.pageInfo;
+        const newEdges = fetchMoreResult?.allPeople.edges;
 
-        return newEdges.length
-          ? {
-              // Put the new allPeople at the end of the list and update `pageInfo`
-              // so we have the new `endCursor` and `hasNextPage` values
-              allPeople: {
-                __typename: previousResult.allPeople.__typename,
-                edges: [...previousResult.allPeople.edges, ...newEdges],
-                pageInfo,
-              },
-            }
-          : previousResult;
+        setpageNumber((prev) => prev + 1);
+        return setPeopleData(
+          newEdges.length
+            ? fetchMoreResult?.allPeople
+            : previousResult?.allPeople
+        );
       },
     });
+
   const hanleSearch = (data: any) => console.log(`data`, data);
 
   return (
@@ -49,11 +49,12 @@ const PeopleList = () => {
       {loading ? (
         <SpinnerView height="50vh" />
       ) : (
-        <PeopleTable
-          dataSource={peopleData?.people}
-          loadMore={handleLoadMore}
-          totalCount={peopleData.totalCount}
-        />
+        <>
+          <PeopleTable dataSource={peopleData?.people} />
+          <Flex flexGap="20px" margin="20px 0" justifyContent="flex-end">
+            <Button onClick={handleNextPage}>Next</Button>
+          </Flex>
+        </>
       )}
     </Box>
   );
