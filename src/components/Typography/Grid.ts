@@ -15,7 +15,7 @@ export const Grid = styled.div<GridProps>`
 
   font-family: ${(props) => {
     if (props.fontFamily) return props.fontFamily;
-    if (props.theme.language === 'fa') return 'Vazir';
+
     return 'Poppins';
   }};
 
