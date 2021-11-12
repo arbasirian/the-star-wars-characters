@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client';
 import { Input } from 'antd';
 
 import { GqlHelper } from 'helpers';
-import { Box, PeopleTable, SpinnerView } from 'components';
+import { Box, Flex, PeopleTable, SpinnerView } from 'components';
 import { AllPeopleData } from 'types';
 
 const { Search } = Input;
@@ -39,11 +39,13 @@ const PeopleList = () => {
 
   return (
     <Box>
-      <Search
-        placeholder="input search text"
-        onSearch={hanleSearch}
-        style={{ width: 200 }}
-      />
+      <Flex justifyContent="flex-end" padding="20px 0">
+        <Search
+          placeholder="input search text"
+          onSearch={hanleSearch}
+          style={{ width: 200 }}
+        />
+      </Flex>
 
       {loading ? (
         <SpinnerView height="50vh" />
